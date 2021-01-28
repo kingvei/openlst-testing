@@ -1,3 +1,4 @@
+#!/bin/bash -ex
 # OpenLST
 # Copyright (C) 2018 Planet Labs Inc.
 #
@@ -14,17 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-[Unit]
-Description=Radiomux instance for comms with the Open LST radio
-BindsTo=dev-lst_uart%i.device
+#sudo apt-get update
+#sudo apt-get install --assume-yes python-dev python-pip
+#sudo pip install -e /home/vagrant/project/open-lst/tools
 
-[Service]
-Type=simple
-User=rommac
-Group=uucp
-ExecStart=/usr/local/bin/radio_mux --rx-socket ipc:///tmp/radiomux%i_rx --tx-socket ipc:///tmp/radiomux%i_tx --echo-socket ipc:///tmp/radiomux%i_echo --mode 777 /dev/lst_uart%i
-ExecStopPost=/bin/sh -c "rm /tmp/radiomux%i_*"
-RestartSec=1
-Restart=always
-
-[Install]
+# Install the radio services
+sudo cp /home/rommac/openlst-main/openlst/open-lst/tools/radio@.service /etc/systemd/system/radio@.service
+sudo systemctl daemon-reload
+sudo systemctl enable radio@0 radio@1
+sudo systemctl start radio@0 radio@1

@@ -1,3 +1,4 @@
+#!/bin/python2
 # OpenLST
 # Copyright (C) 2018 Planet Labs Inc.
 #
