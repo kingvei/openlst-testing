@@ -25,6 +25,8 @@
 #define BOARD_HAS_RX_HOOK 1
 #define CONFIG_CAPABLE_RF_RX 1
 #define CONFIG_CAPABLE_RF_TX 1
+// Enable custom commands
+//#define CUSTOM_COMMANDS
 
 // Enable the power supply sense lines AN0 and AN1
 #define ADCCFG_CONFIG 0b00000011

@@ -31,8 +31,14 @@ typedef enum {
 	radio_msg_telem        = 0x18,
 	radio_msg_get_callsign = 0x19,
 	radio_msg_set_callsign = 0x1a,
-	radio_msg_callsign     = 0x1b
+	radio_msg_callsign     = 0x1b,
+	radio_msg_test	       = 0x1c
 } radio_msg_no;
+
+typedef enum {
+	custom_set_led = 0x1c,
+	custom_clear_led = 0x1d
+} custom_command;
 
 #define RANGING_ACK_TYPE 1
 #define RANGING_ACK_VERSION 1

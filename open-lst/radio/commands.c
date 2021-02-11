@@ -1,6 +1,4 @@
-// OpenLST
-// Copyright (C) 2018 Planet Labs Inc.
-// 
+// OpenLST // Copyright (C) 2018 Planet Labs Inc.  // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -23,6 +21,8 @@
 #include "schedule.h"
 #include "stringx.h"
 #include "watchdog.h"
+#include "board.h"
+
 
 #ifdef CUSTOM_COMMANDS
 uint8_t custom_commands(const __xdata command_t *cmd, uint8_t len, __xdata command_t *reply);
@@ -143,10 +143,16 @@ uint8_t commands_handle_command(const __xdata command_t *cmd, uint8_t len, __xda
 		break;
 		#endif
 
-		#ifdef CUSTOM_COMMANDS
+//		#ifdef CUSTOM_COMMANDS
+
+		case radio_msg_test:
+			reply->header.command = common_msg_ack;
+		break;
+
 		default:
-			reply_length = custom_commands(cmd, len, reply);
-		#endif
+			reply->header.command = common_msg_nack;
+			//reply_length = custom_commands(cmd, len, reply);
+//		#endif
 	}
 	return reply_length;
 }
