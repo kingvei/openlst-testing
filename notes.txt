@@ -26,3 +26,17 @@ Bypassing most of the muxing of UART ports:
  - However, it appears to not always work exactly correctly due to various udev stuff.
  - To bypass this made a zynq.sh script in the tools folder for openlst that just runs the background radio_mux and specifies specifically the UART1 only. This works fine for initial testing but should be altered later on.
  - Note only tested on Arch Linux, so this may not work for all distributions 
+
+
+Adding Custom Commands:
+ - So the process for adding custom commands is somewhat clumsy (at least if you want them accessible via the radio_terminal).
+ - There are more or less 2 locations that need to be edited to add a custom command (depending on the complexity).
+	- the python translator.py 
+		- Added your hexcode that corresponds to your command
+		- Add the option so that "lst (insert command)" works.
+	- /open-lst/radio/radio_commands.h
+		- Added the hexcode for your command
+	- /open-lst/radio/commands.c
+		- Actually flush out the command.
+
+ - You can setup the custom commands multiple ways so that they can be easily disabled with a macro but for now I just add my commands to the main switch statement in commands.c 

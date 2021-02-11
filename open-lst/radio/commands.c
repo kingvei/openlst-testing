@@ -143,16 +143,19 @@ uint8_t commands_handle_command(const __xdata command_t *cmd, uint8_t len, __xda
 		break;
 		#endif
 
-//		#ifdef CUSTOM_COMMANDS
 
-		case radio_msg_test:
+		case radio_set_led:
+		        board_led_set((__bit) 1);	
+			reply->header.command = common_msg_ack;
+		break;
+
+		case radio_clear_led:
+		        board_led_set((__bit) 0);	
 			reply->header.command = common_msg_ack;
 		break;
 
 		default:
 			reply->header.command = common_msg_nack;
-			//reply_length = custom_commands(cmd, len, reply);
-//		#endif
 	}
 	return reply_length;
 }

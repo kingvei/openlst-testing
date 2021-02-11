@@ -33,7 +33,8 @@ CALLSIGN = '\x1b'
 GET_TELEM = '\x17'
 TELEM = '\x18'
 GET_TIME = '\x13'
-MSG_TEST = '\x1c'
+LED_SET = '\x1c'
+LED_CLEAR = '\x1d'
 SET_TIME = '\x14'
 BOOTLOADER_PING = '\x00'
 BOOTLOADER_ERASE = '\x0c'
@@ -264,7 +265,8 @@ COMMANDS = [
     Command("reboot", REBOOT,
             UInt32Argument("delay"), optional_args=1),
     Command("get_time", GET_TIME),
-    Command("msg_test", MSG_TEST),
+    Command("led_set", LED_SET),
+    Command("led_clear", LED_CLEAR),
     Command("set_time", SET_TIME,
             UInt32Argument("seconds"),
             UInt32Argument("nanoseconds")),
